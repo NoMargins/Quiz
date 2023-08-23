@@ -9,27 +9,28 @@
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); // Тінь для піднятого вигляду
     
     width: 80%;
+    min-width: 400px;
     max-width: 800px; // Максимальна ширина контейнера
     margin: 50px auto; // Центрування контейнера
   
     // Медіа-запит для мобільних екранів
     @media (max-width: 600px) {
-      width: 95%;
+      width: 100%;
       padding: 20px 10px;
     }    
   }
   
   button.skip-quest {
-    width: 150px;
+    width: 300px;
     height: 50px;
     border: 0;
     border-radius: 16px;
     align-self: center;
     text-align: center;
-    background-color: #0d812a;
-    color: white;
+    background-color: #e4ea2d;
+    color: rgb(85 48 48);;
     &:hover {
-        background-color: #a1e217;
+        background-color: #ee930a;
         color:rgba(39, 31, 163);
 transition: 2s ;
     }

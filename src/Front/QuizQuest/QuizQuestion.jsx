@@ -6,8 +6,6 @@ import './quizQuestion.scss';
 const QuizQuestion = () => {
   const question = useSelector(state => state.quiz.questions[state.quiz.currentQuestionIndex]);
   const dispatch = useDispatch();
-
-  const [timeLeft, setTimeLeft] = useState(60); // 60 секунд
   
   const handleAnswerClick = (option, index) => {
     dispatch(submitAnswer(option, index));
@@ -15,17 +13,17 @@ const QuizQuestion = () => {
 
   return (
     <div className='question-container'>
-      <h1 className='heading'>{question.text}</h1>
-      {question.options.map((option, index) => (
-        <button 
-          className='button'
-          key={index} 
-          onClick={() => handleAnswerClick(option, index)}
-        >
-          {option}
-        </button>
-      ))}
-    </div>
+    <h1 className='heading'>{question.text}</h1>
+    {question.options.map((option, index) => (
+      <button 
+        className='button'
+        key={index} 
+        onClick={() => handleAnswerClick(option, index)}
+      >
+        {option}
+      </button>
+    ))}
+  </div>
   );
 };
 

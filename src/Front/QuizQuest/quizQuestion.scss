@@ -8,6 +8,7 @@
     border-radius: 8px;
     margin: 20px auto;
     max-width: 600px;
+    min-width: 400px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     & .heading {
             font-size: 1.5rem;
@@ -16,6 +17,8 @@
           }
     & .button {
       width: 400px; 
+      min-width: 300px;
+
       min-height: 50px;
             margin: 8px 0;
             padding: 10px 15px;

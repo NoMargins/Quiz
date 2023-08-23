@@ -13,7 +13,7 @@ const AuthPage = ({ onContinue }) => {  // передамо onContinue як пр
     e.preventDefault();
   
     const userData = {
-      username,
+      name: username,
       phone,
     };
     dispatch(loginUser(userData));

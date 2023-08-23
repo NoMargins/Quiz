@@ -13,10 +13,10 @@ const QuizContainer = ({ onContinue }) => {
   const answers = useSelector(state => state.quiz.answers);
   const currentQuestionIndex = useSelector(state => state.quiz.currentQuestionIndex);
   const question = questions?.[currentQuestionIndex];
-  const name = useSelector(userName);
-  const phone = useSelector(userPhone);
+  const {name, phone} = useSelector(userName);
   const score = useSelector(userScore);
   const userData = {name, phone, score};
+  console.log(userData);
 
   const handleNext = async () => { // Зробіть цю функцію асинхронною
     if (currentQuestionIndex < questions.length - 1) {
@@ -25,9 +25,11 @@ const QuizContainer = ({ onContinue }) => {
       console.log('Quiz completed! Answers: ', answers);
       dispatch(setShowResults(true));
       dispatch(setUserData(userData));
+      console.log(userData);
+
 
       try {
-        await submitUserData({ name, phone, score });
+        await submitUserData(userData);
         dispatch({
           type: ADD_USERDATA,
           payload: { name, phone, score }

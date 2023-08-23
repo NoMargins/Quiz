@@ -6,9 +6,6 @@ import {
     ADD_USERDATA
   } from './quizActions';
 
-  import {submitUserData} from '../UserInfo/api';
-
-
   import questions from '../../questions.json';
 
   
@@ -41,7 +38,6 @@ import {
         return { ...state, leaderboard: action.payload };
 
         case ADD_USERDATA:
-          const {name, phone} = action.payload; 
           return { ...state,
             name: action.payload.name,
             phone: action.payload.phone };
