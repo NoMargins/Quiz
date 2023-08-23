@@ -15,7 +15,6 @@ const QuizContainer = ({ onContinue }) => {
   const name = useSelector(userName);
   const phone = useSelector(userPhone);
   const score = useSelector(userScore);
-  const userData = {name,phone,score};
 
   const handleNext = async () => { // Зробіть цю функцію асинхронною
     if (currentQuestionIndex < questions.length - 1) {
@@ -23,8 +22,15 @@ const QuizContainer = ({ onContinue }) => {
     } else {
       console.log('Quiz completed! Answers: ', answers);
       dispatch(setShowResults(true));
-      dispatch(submitUserData(userData));
-
+      try {
+        await submitUserData({ name, phone, score });
+        dispatch({
+          type: ADD_USERDATA,
+          payload: { name, phone, score }
+        });
+      } catch (error) {
+        console.error("Error submitting user data:", error);
+      }
       if (onContinue) {
         onContinue();
       }
