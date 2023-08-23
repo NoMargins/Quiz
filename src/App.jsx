@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import AuthPage from './Front/Auth/AuthPage';
 import QuizDescription from './Front/QuizDescription/QuizDescription';
-import QuizQuestion from './Front/QuizQuest/QuizQuestion';
 import ResultsPage from './Front/LeadershipTable/ResultsPage';
 import LeaderboardPage from './Front/LeadershipTable/LeaderboardPage';
 import QuizContainer from './Front/QuizQuest/QuizContainer';
