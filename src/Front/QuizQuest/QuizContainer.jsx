@@ -4,6 +4,7 @@ import { userName, userPhone, userScore } from './quiz.selectors';
 import QuizQuestion from './QuizQuestion';
 import { nextQuestion, setShowResults, ADD_USERDATA } from './quizActions'; // Додайте імпорт ADD_USERDATA
 import './quizContainer.scss';
+import {setUserData } from '../Auth/authActions'; 
 import {submitUserData} from '../UserInfo/api'
 
 const QuizContainer = ({ onContinue }) => {
@@ -15,6 +16,7 @@ const QuizContainer = ({ onContinue }) => {
   const name = useSelector(userName);
   const phone = useSelector(userPhone);
   const score = useSelector(userScore);
+  const userData = {name, phone, score};
 
   const handleNext = async () => { // Зробіть цю функцію асинхронною
     if (currentQuestionIndex < questions.length - 1) {
