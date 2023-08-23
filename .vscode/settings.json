@@ -1,0 +1,11 @@
+{
+    "prettier.bracketSameLine": true,
+    "prettier.enableDebugLogs": true,
+    "prettier.endOfLine": "auto",
+    "prettier.htmlWhitespaceSensitivity": "strict",
+    "prettier.requireConfig": false,
+    "prettier.singleQuote": true,
+    "prettier.singleAttributePerLine": true,
+    "prettier.useTabs": true,
+    "prettier.withNodeModules": true
+}

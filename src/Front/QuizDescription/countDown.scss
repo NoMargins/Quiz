@@ -1,0 +1,14 @@
+.countdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(10, 81, 44, 0.8);
+    color: aliceblue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }

@@ -1,0 +1,45 @@
+.results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f7f9fc;
+    font-family: 'Arial', sans-serif;
+
+    .results-title {
+        font-size: 2.5em;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .results-score {
+        font-size: 5em;
+        color: #4CAF50; // Зелений
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .results-text {
+        font-size: 1.5em;
+        color: #666;
+        text-align: center;
+    }
+
+    .retry-btn {
+        margin-top: 30px;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #45a049;
+        }
+    }
+}

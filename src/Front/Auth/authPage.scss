@@ -1,0 +1,18 @@
+
+.auth-container h1, .auth-container h2 {
+  font-family: 'YourCursiveFont', cursive; 
+  color: #004499; 
+}
+
+.auth-container button {
+  background-color: #004499;
+  color: #FFF;
+  border: none;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.auth-container button:hover {
+  background-color: #003366;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
