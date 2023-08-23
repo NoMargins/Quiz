@@ -12,7 +12,6 @@ const App = () => {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<AuthPage />} />
           <Route path="/quiz/description" element={<QuizDescription />} />
           <Route path="/quiz/question" element={<QuizContainer />} />
           <Route path="/results" element={<ResultsPage />} />
