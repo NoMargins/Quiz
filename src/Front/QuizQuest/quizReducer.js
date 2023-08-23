@@ -2,8 +2,12 @@ import {
     START_QUIZ,
     SUBMIT_ANSWER,
     FETCH_LEADERBOARD, 
-    NEXT_QUESTION
+    NEXT_QUESTION,
+    ADD_USERDATA
   } from './quizActions';
+
+  import {submitUserData} from '../UserInfo/api';
+
 
   import questions from '../../questions.json';
 
@@ -12,9 +16,10 @@ import {
     questions: questions,
     currentQuestionIndex: 0,
     score: 0,
-    leaderboard: [],
     showingResults: false,
     quizStarted: false,
+    name: null,
+    phone: null,
   };
   
   const quizReducer = (state = initialState, action) => {
@@ -34,6 +39,12 @@ import {
         return { ...state, score: newScore, currentQuestionIndex: state.currentQuestionIndex + 1 };
       case FETCH_LEADERBOARD:
         return { ...state, leaderboard: action.payload };
+
+        case ADD_USERDATA:
+          const {name, phone} = action.payload; 
+          return { ...state,
+            name: action.payload.name,
+            phone: action.payload.phone };
 
         case NEXT_QUESTION:
           return {
