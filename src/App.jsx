@@ -1,24 +1,43 @@
-import React from 'react';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
 import AuthPage from './Front/Auth/AuthPage';
 import QuizDescription from './Front/QuizDescription/QuizDescription';
+import CountDown from './Front/QuizDescription/CountDown';
+import QuizContainer from './Front/QuizQuest/QuizContainer';
 import ResultsPage from './Front/LeadershipTable/ResultsPage';
 import LeaderboardPage from './Front/LeadershipTable/LeaderboardPage';
-import QuizContainer from './Front/QuizQuest/QuizContainer';
-
 
 const App = () => {
-    return (
-      <BrowserRouter>
-        <Routes>
-        <Route path="/" element={<AuthPage />} /> {/* Default route */}
-          <Route path="/quiz/description" element={<QuizDescription />} />
-          <Route path="/quiz/question" element={<QuizContainer />} />
-          <Route path="/results" element={<ResultsPage />} />
-          <Route path="/leaderboard" element={<LeaderboardPage />} />
-        </Routes>
-      </BrowserRouter>
-    );
+    const [stage, setStage] = useState('auth');
+    const [currentView, setCurrentView] = useState('CountDown');
+
+  const handleCountDownFinish = () => {
+    setCurrentView('QuizContainer');
   };
-  
-  export default App;
+
+    const renderComponent = () => {
+        switch (stage) {
+            case 'auth':
+                return <AuthPage onContinue={() => setStage('quizDescription')} />;
+            case 'quizDescription':
+                return <QuizDescription onContinue={() => setStage('countDown')} />;
+                case 'countDown':
+                return <CountDown onContinue={() => setStage('quizQuestion')} />;
+            case 'quizQuestion':
+                return <QuizContainer onContinue={() => setStage('results')} />;
+            case 'results':
+                return <ResultsPage onContinue={() => setStage('leaderboard')} />;
+            case 'leaderboard':
+                return <LeaderboardPage />;
+            default:
+                return <AuthPage />;
+        }
+    }
+
+    return (
+        <div>
+            {renderComponent()}
+        </div>
+    );
+}
+
+export default App;

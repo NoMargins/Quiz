@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { loginUser, registerUser, submitUserData } from './authActions'; 
 
-const AuthPage = () => {
+const AuthPage = ({ onContinue }) => {  // передамо onContinue як проп
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,7 +16,8 @@ const AuthPage = () => {
     };
     dispatch(loginUser(userData));
     dispatch(submitUserData(userData));
-    navigate('/quiz/description');
+
+    onContinue();  // замість navigate використовуємо функцію onContinue для переходу до наступного етапу
   };
 
   return (

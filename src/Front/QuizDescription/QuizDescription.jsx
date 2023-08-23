@@ -1,36 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { startQuiz as startQuizAction } from '../QuizQuest/quizActions';
-import { useNavigate } from 'react-router-dom';
+import { startQuiz } from '../QuizQuest/quizActions';  // Fixed import path
 import CountDown from './CountDown'
-
 
 import './quizDesc.scss';
 
-const QuizDescription = () => {
-  const [showCountdown, setShowCountdown] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const QuizDescription = ({ onContinue }) => {
   
-  const startQuiz = () => {
-    setShowCountdown(true);
-  };
-
-  const handleCountdownFinish = () => {
-    dispatch(startQuizAction());
-    navigate('/quiz/question');
-  };
-
-  const handleStartButtonClick = () => {
-    setShowCountdown(true);
-};
-
 
   return (
     <div className='container'>
-      {showCountdown ? (
-        <CountDown onFinish={handleCountdownFinish} />
-      ) : (
         <div className="quiz-rules-container">
             <h2>Вітаємо у нашій захопливій вікторині!</h2>
             <p>Перш ніж ви розпочнете, ознайомтеся з декількома простими правилами:</p>
@@ -41,7 +20,7 @@ const QuizDescription = () => {
                 <li>Найважливіше – це отимати задоволення! Навчайтеся, розважайтеся і насолоджуйтеся кожним питанням.</li>
                 <li>Коли ви дасте відповіді на всі запитання, то побачите свій результат. Поділіться ним із колегами і спробуйте знову, якщо хочете покращити свій рекорд!</li>
             </ul>
-            <button className="start-quiz-btn" onClick={handleStartButtonClick}>Розпочати</button>
+            <button className="start-quiz-btn" onClick={() => onContinue()}>Розпочати</button>
         </div>
       )}
     </div>

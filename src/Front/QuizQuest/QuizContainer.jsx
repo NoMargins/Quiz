@@ -2,16 +2,14 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import QuizQuestion from './QuizQuestion';
 import { nextQuestion, setShowResults } from './quizActions';
-import { useNavigate } from 'react-router-dom';
 import './quizContainer.scss';
 
-const QuizContainer = () => {
+const QuizContainer = ({ onContinue }) => {
   const dispatch = useDispatch();
   const questions = useSelector(state => state.quiz.questions);
   const answers = useSelector(state => state.quiz.answers);
   const currentQuestionIndex = useSelector(state => state.quiz.currentQuestionIndex);
-  const question = questions && questions.length > currentQuestionIndex ? questions[currentQuestionIndex] : null;
-  const navigate = useNavigate();
+  const question = questions?.[currentQuestionIndex];
 
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
@@ -19,15 +17,17 @@ const QuizContainer = () => {
     } else {
       console.log('Quiz completed! Answers: ', answers);
       dispatch(setShowResults(true));
-      navigate('/results');
+      if (onContinue) {
+        onContinue();
+      }
     }    
   }
 
   useEffect(() => {
-    if (!question) {
-      navigate('/results');
+    if (!question && onContinue) {
+      onContinue();
     }
-  }, [question]);
+  }, [question, onContinue]);
 
   return (
     <div className='quiz-container'>
@@ -39,6 +39,7 @@ const QuizContainer = () => {
         </>
       )
       : <div className='final-text'>Дякуємо за проходження вікторини!</div>
+      
     }
     </div>
   );

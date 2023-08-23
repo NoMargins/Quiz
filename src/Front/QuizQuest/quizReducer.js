@@ -13,13 +13,14 @@ import {
     currentQuestionIndex: 0,
     score: 0,
     leaderboard: [],
-    showingResults: false
+    showingResults: false,
+    quizStarted: false,
   };
   
   const quizReducer = (state = initialState, action) => {
     switch (action.type) {
       case START_QUIZ:
-        return { ...state, currentQuestionIndex: 0, score: 0 };
+        return { ...state, currentQuestionIndex: 0, score: 0, quizStarted: true };
       case SUBMIT_ANSWER:
         // Logic for checking the answer and updating the score
         // For now, just move to the next question
