@@ -32,7 +32,7 @@ export const submitUserData = (userData) => dispatch => {
   dispatch({ type: SUBMIT_USER_DATA_REQUEST });
 
   // real API call
-  fetch('https://63b4368c9f50390584aa3bd2.mockapi.io/ToDoList/users', {
+  fetch('https://apteka911.nezalezhnist.fun/api/data.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

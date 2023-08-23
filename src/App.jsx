@@ -16,9 +16,9 @@ const App = () => {
 
     const renderComponent = () => {
         switch (stage) {
-          case 'main':
-                return <MainImage onContinue={() => setStage('autorization')} />;
-            case 'autorization':
+        //   case 'main':
+        //         return <MainImage onContinue={() => setStage('autorization')} />;
+            case 'main':
                 return <AuthPage onContinue={() => setStage('quizDescription')} />;
             case 'quizDescription':
                 return <QuizDescription onContinue={() => setStage('countDown')} />;
