@@ -7,7 +7,7 @@ import ResultsPage from './Front/LeadershipTable/ResultsPage';
 import LeaderboardPage from './Front/LeadershipTable/LeaderboardPage';
 
 const App = () => {
-    const [stage, setStage] = useState('auth');
+    const [stage, setStage] = useState('main');
     const [currentView, setCurrentView] = useState('CountDown');
 
   const handleCountDownFinish = () => {
@@ -16,7 +16,9 @@ const App = () => {
 
     const renderComponent = () => {
         switch (stage) {
-            case 'auth':
+          case 'main':
+                return <MainImage onContinue={() => setStage('autorization')} />;
+            case 'autorization':
                 return <AuthPage onContinue={() => setStage('quizDescription')} />;
             case 'quizDescription':
                 return <QuizDescription onContinue={() => setStage('countDown')} />;
