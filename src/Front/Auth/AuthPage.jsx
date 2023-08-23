@@ -16,8 +16,8 @@ const AuthPage = ({ onContinue }) => {  // передамо onContinue як пр
       name: username,
       phone,
     };
-    dispatch(loginUser(userData));
-    dispatch(setUserData(userData));
+    // dispatch(loginUser(userData));
+    
     dispatch(addUserData(userData))
 
     onContinue();  // замість navigate використовуємо функцію onContinue для переходу до наступного етапу

@@ -1,46 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { userName, userPhone, userScore } from './quiz.selectors';
-import QuizQuestion from './QuizQuestion';
-import { nextQuestion, setShowResults, ADD_USERDATA } from './quizActions'; // Додайте імпорт ADD_USERDATA
+import { userName, userScore } from './quiz.selectors';
+import { setUserData } from '../Auth/authActions'; 
+import { submitUserData } from '../UserInfo/api';
 import './quizContainer.scss';
-import {setUserData } from '../Auth/authActions'; 
-import {submitUserData} from '../UserInfo/api'
 
 const QuizContainer = ({ onContinue }) => {
   const dispatch = useDispatch();
-  const questions = useSelector(state => state.quiz.questions);
-  const answers = useSelector(state => state.quiz.answers);
-  const currentQuestionIndex = useSelector(state => state.quiz.currentQuestionIndex);
-  const question = questions?.[currentQuestionIndex];
-  const {name, phone} = useSelector(userName);
+  const { name, phone } = useSelector(userName);
   const score = useSelector(userScore);
-  const userData = {name, phone, score};
-  console.log(userData);
+  const userData = { name, phone, score };
 
-  const handleNext = async () => { // Зробіть цю функцію асинхронною
-    if (currentQuestionIndex < questions.length - 1) {
-      dispatch(nextQuestion());
-    } else {
-      console.log('Quiz completed! Answers: ', answers);
-      dispatch(setShowResults(true));
+  const handleNext = async () => {
+    try {
+      await submitUserData(userData);
       dispatch(setUserData(userData));
-      console.log(userData);
-
-
-      try {
-        await submitUserData(userData);
-        dispatch({
-          type: ADD_USERDATA,
-          payload: { name, phone, score }
-        });
-      } catch (error) {
-        console.error("Error submitting user data:", error);
-      }
+      console.log('User data submitted:', userData);
       if (onContinue) {
         onContinue();
       }
-    }    
+    } catch (error) {
+      console.error("Error submitting user data:", error);
+    } 
   }
 
   useEffect(() => {
