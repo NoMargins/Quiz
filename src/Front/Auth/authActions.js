@@ -28,7 +28,7 @@ export const registerUser = (username, password) => dispatch => {
   }, 1000);
 };
 
-export const submitUserData = (userData) => dispatch => {
+export const setUserData = (userData) => dispatch => {
   dispatch({ type: SUBMIT_USER_DATA_REQUEST });
 
   // real API call

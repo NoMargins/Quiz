@@ -22,6 +22,8 @@ const QuizContainer = ({ onContinue }) => {
     } else {
       console.log('Quiz completed! Answers: ', answers);
       dispatch(setShowResults(true));
+      dispatch(setUserData(userData));
+
       try {
         await submitUserData({ name, phone, score });
         dispatch({
