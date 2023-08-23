@@ -1,4 +1,6 @@
-const baseUrl = 'https://63b4368c9f50390584aa3bd2.mockapi.io/ToDoList';
+// const baseUrl = 'https://63b4368c9f50390584aa3bd2.mockapi.io/ToDoList';
+const baseUrl = 'https://apteka911.nezalezhnist.fun/api/data.php';
+
 
 export const submitUserData = async (userData) => {
   try {
