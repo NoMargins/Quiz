@@ -16,7 +16,9 @@ body {
 	// min-height: 100vh;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+	overflow: scroll;
+
+    // height: 100vh;
     // background-color: #f7f9fc;
 	background-image: url('https://apteka911.nezalezhnist.fun/field.jpg'); // Змініть на ваше зображення
 

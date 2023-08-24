@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { userName, userPhone, userScore } from './quiz.selectors';
 import QuizQuestion from './QuizQuestion';
 import { nextQuestion, setShowResults, addUserData } from './quizActions';
-import './quizContainer.scss';
+import './quizQuestion.scss';
 import { submitUserData } from '../UserInfo/api';
 
 const QuizContainer = ({ onContinue }) => {
