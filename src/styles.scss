@@ -6,18 +6,24 @@
 }
 
 body {
-	font-family: 'Open-Sans', sans-serif;
+	font-family: 'Oswald', Sans-serif;	
 	font-size: $font-size-base;
 	margin: 0;
 	padding: 0;
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
-	color: $main-font-color;
-	background-color: $main-body-background;
+	// min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    // background-color: #f7f9fc;
+	background-image: url('https://apteka911.nezalezhnist.fun/field.jpg'); // Змініть на ваше зображення
+
 }
 
-#root {
-	background-color: $main-body-background;
+.first-ever-div {
+	width: 100%;
+	height: 100%;
 }
+

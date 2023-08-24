@@ -40,7 +40,8 @@ import {
         case ADD_USERDATA:
           return { ...state,
             name: action.payload.name,
-            phone: action.payload.phone };
+            phone: action.payload.phone,
+          score: action.payload.score };
 
         case NEXT_QUESTION:
           return {

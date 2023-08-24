@@ -7,7 +7,10 @@ const ResultsPage = () => {
  
   return (
     <div className='results-container'>
-      <div className='results-title'><h2>Вітаємо!</h2><h3>Ви набрали {score}/10 балів!</h3></div>
+      <div className='results-title'>
+        <h2>Вітаємо!🥳</h2>
+        <h3>Ваш результат – {score}/10 балів!👏</h3>
+        </div>
     </div>
   );
 };

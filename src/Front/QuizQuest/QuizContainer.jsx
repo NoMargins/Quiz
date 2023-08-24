@@ -1,34 +1,44 @@
-import React from 'react';
+import React, { useEffect, useCallback  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { userName, userScore } from './quiz.selectors';
-import { setUserData } from '../Auth/authActions'; 
-import { submitUserData } from '../UserInfo/api';
+import { userName, userPhone, userScore } from './quiz.selectors';
+import QuizQuestion from './QuizQuestion';
+import { nextQuestion, setShowResults, addUserData } from './quizActions';
 import './quizContainer.scss';
+import { submitUserData } from '../UserInfo/api';
 
 const QuizContainer = ({ onContinue }) => {
   const dispatch = useDispatch();
-  const { name, phone } = useSelector(userName);
+  const questions = useSelector(state => state.quiz.questions);
+  const currentQuestionIndex = useSelector(state => state.quiz.currentQuestionIndex);
+  const question = questions?.[currentQuestionIndex];
+  const name = useSelector(userName);
+  const phone = useSelector(userPhone);
   const score = useSelector(userScore);
   const userData = { name, phone, score };
 
-  const handleNext = async () => {
-    try {
-      await submitUserData(userData);
-      dispatch(setUserData(userData));
-      console.log('User data submitted:', userData);
+  const handleCompletion = useCallback(async () => {
+    if (currentQuestionIndex >= questions.length - 1) {
+      dispatch(setShowResults(true));
+      try {
+        await submitUserData(userData);
+        // dispatch(addUserData(userData));
+      } catch (error) {
+        console.error('Error submitting data:', error);
+      }
+
       if (onContinue) {
         onContinue();
       }
-    } catch (error) {
-      console.error("Error submitting user data:", error);
-    } 
-  }
+    }
+  }, [currentQuestionIndex, questions, userData, onContinue, dispatch]);
+
+  
 
   useEffect(() => {
-    if (!question && onContinue) {
-      onContinue();
+    if (!question) {
+      handleCompletion(); // Викликаємо, коли вікторина завершена
     }
-  }, [question, onContinue]);
+  }, [question, handleCompletion]);
 
   return (
     <div className='quiz-container'>
@@ -36,10 +46,9 @@ const QuizContainer = ({ onContinue }) => {
         ? (
           <>
             <QuizQuestion />
-            <button className="skip-quest" onClick={handleNext}>Наступне питання</button>
           </>
         )
-        : <div className='final-text'>Дякуємо за проходження вікторини!</div>
+        : console.log('thank you!')
       }
     </div>
   );

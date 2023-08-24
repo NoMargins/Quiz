@@ -3,9 +3,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #f7f9fc;
-    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    border-radius: 16px;
+    height: 50vh;
+    min-height: 300px;
+    background-color: #f6fbc0;
+    min-width: 300px;
 
     .results-title {
         font-size: 2.5em;

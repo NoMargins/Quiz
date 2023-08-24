@@ -5,6 +5,7 @@ import CountDown from './Front/QuizDescription/CountDown';
 import QuizContainer from './Front/QuizQuest/QuizContainer';
 import ResultsPage from './Front/LeadershipTable/ResultsPage';
 import LeaderboardPage from './Front/LeadershipTable/LeaderboardPage';
+import MainImage from './Front/Main/Main';
 
 const App = () => {
     const [stage, setStage] = useState('main');
@@ -16,9 +17,9 @@ const App = () => {
 
     const renderComponent = () => {
         switch (stage) {
-        //   case 'main':
-        //         return <MainImage onContinue={() => setStage('autorization')} />;
-            case 'main':
+          case 'main':
+                return <MainImage onContinue={() => setStage('autorization')} />;
+            case 'autorization':
                 return <AuthPage onContinue={() => setStage('quizDescription')} />;
             case 'quizDescription':
                 return <QuizDescription onContinue={() => setStage('countDown')} />;
@@ -36,7 +37,7 @@ const App = () => {
     }
 
     return (
-        <div>
+        <div className='first-ever-div'>
             {renderComponent()}
         </div>
     );
