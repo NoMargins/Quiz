@@ -1,7 +1,7 @@
 import json
 
 # Крок 1: Прочитати вміст файлу
-with open('path/to/your/file.txt', 'r', encoding='utf-8') as file:
+with open('out.txt', 'r', encoding='utf-8') as file:
     lines = file.readlines()
 
 # Крок 2 та 3: Витягти дані і додати до масиву
