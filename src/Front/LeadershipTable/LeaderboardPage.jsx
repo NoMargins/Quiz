@@ -1,41 +1,54 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserData } from '../UserInfo/api';
-import './leadershipTable.scss';
+import React, { useState, useEffect } from 'react';
 
-const LeaderboardPage = () => {
-  const leaderboard = useSelector(state => state.quiz.leaderboard);
-  const userPosition = useSelector(state => state.quiz.userPosition);
-  const dispatch = useDispatch();
+const TournamentTable = () => {
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
   useEffect(() => {
-    dispatch(fetchLeaderboard());
-  }, [dispatch]);
+    // Припустимо, що ви використовуєте axios
+    axios.get('https://apteka911.nezalezhnist.fun/api')
+      .then(response => {
+        const sortedData = response.data.sort((a, b) => b.score - a.score);
+        setData(sortedData);
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
+  const currentItems = data.slice(firstIndex, lastIndex);
 
   return (
-    <div className='leaderboard-container'>
-      <h1>Турнірна таблиця</h1>
+    <div>
       <table>
         <thead>
           <tr>
-            <th>Позиція</th>
             <th>Ім'я</th>
             <th>Бали</th>
           </tr>
         </thead>
         <tbody>
-          {leaderboard.map((user, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{user.username}</td>
-              <td>{user.score} points</td>
+          {currentItems.map(item => (
+            <tr key={item.phone}>
+              <td>{item.name}</td>
+              <td>{item.score}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <h2>Твій рейтинг серед учасників: {userPosition}</h2>
+
+      <div className="pagination">
+        {Array(Math.ceil(data.length / itemsPerPage)).fill().map((_, index) => (
+          <button key={index} onClick={() => setCurrentPage(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
-);
+  );
 };
 
-export default LeaderboardPage;
+export default TournamentTable;

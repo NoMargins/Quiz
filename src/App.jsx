@@ -28,9 +28,9 @@ const App = () => {
             case 'quizQuestion':
                 return <QuizContainer onContinue={() => setStage('results')} />;
             case 'results':
-                return <ResultsPage onContinue={() => setStage('leaderboard')} />;
-            case 'leaderboard':
-                return <LeaderboardPage />;
+                return <ResultsPage onContinue={() => setStage('autorization')} />;
+            // case 'leaderboard':
+            //     return <LeaderboardPage onContinue={() => setStage('autorization')/>;
             default:
                 return <AuthPage />;
         }
