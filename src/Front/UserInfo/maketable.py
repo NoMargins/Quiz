@@ -2,8 +2,8 @@ import json
 import pandas as pd
 
 # Завантаження JSON
-with open('cleaned_data.json', 'r') as file:
-    data = json.load(file)
+with open('cleaned_data.json', 'r', encoding='utf-8') as file:
+    content = file.read()
 
 # Створення DataFrame за допомогою pandas
 df = pd.DataFrame(data)
