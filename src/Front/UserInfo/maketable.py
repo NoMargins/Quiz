@@ -3,7 +3,7 @@ import pandas as pd
 
 # Завантаження JSON
 with open('cleaned_data.json', 'r', encoding='utf-8') as file:
-    content = file.read()
+    data = file.read()
 
 # Створення DataFrame за допомогою pandas
 df = pd.DataFrame(data)
