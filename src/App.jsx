@@ -17,22 +17,22 @@ const App = () => {
 
     const renderComponent = () => {
         switch (stage) {
-          case 'main':
-                return <MainImage onContinue={() => setStage('autorization')} />;
-            case 'autorization':
-                return <AuthPage onContinue={() => setStage('quizDescription')} />;
-            case 'quizDescription':
-                return <QuizDescription onContinue={() => setStage('countDown')} />;
-                case 'countDown':
-                return <CountDown onContinue={() => setStage('quizQuestion')} />;
-            case 'quizQuestion':
-                return <QuizContainer onContinue={() => setStage('results')} />;
-            case 'results':
-                return <ResultsPage onContinue={() => setStage('autorization')} />;
-            // case 'leaderboard':
-            //     return <LeaderboardPage onContinue={() => setStage('autorization')/>;
+        //   case 'main':
+        //         return <MainImage onContinue={() => setStage('autorization')} />;
+        //     case 'autorization':
+        //         return <AuthPage onContinue={() => setStage('quizDescription')} />;
+        //     case 'quizDescription':
+        //         return <QuizDescription onContinue={() => setStage('countDown')} />;
+        //         case 'countDown':
+        //         return <CountDown onContinue={() => setStage('quizQuestion')} />;
+        //     case 'quizQuestion':
+        //         return <QuizContainer onContinue={() => setStage('results')} />;
+            // case 'results':
+                // return <ResultsPage onContinue={() => setStage('autorization')} />;
+            case 'main':
+                return <LeaderboardPage/>;
             default:
-                return <AuthPage />;
+                return <LeaderboardPage />;
         }
     }
 
