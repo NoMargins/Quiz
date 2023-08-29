@@ -1,22 +1,21 @@
 import openpyxl
 import re
 
-def count_chars_in_non_blue_cells(filename):
+def remove_english_cells(filename):
     wb = openpyxl.load_workbook(filename)
-    total_chars = 0
 
-    # Регулярний вираз для визначення тексту українською
-    ukr_pattern = re.compile(r"^[А-ЩЬЮЯҐЄІЇа-щьюяґєії\s]+$")
+    # Регулярний вираз для визначення тексту англійською
+    eng_pattern = re.compile(r"^[A-Za-z\s]+$")
 
     for sheet in wb:
         for row in sheet.iter_rows():
             for cell in row:
-                if cell.fill.start_color.index = "FFFFFFFF":  # Синій колір у форматі ARGB
-                    if cell.value and isinstance(cell.value, str):
-                        if ukr_pattern.match(cell.value):
-                            total_chars += len(cell.value)
+                if cell.value and isinstance(cell.value, str):
+                    if eng_pattern.match(cell.value):
+                        cell.value = None  # видалення змісту комірки
 
-    return total_chars
+    # Зберігаємо зміни назад в файл
+    wb.save(filename)
 
 filename = "translate.xlsx"
-print(count_chars_in_non_blue_cells(filename))
+remove_english_cells(filename)
